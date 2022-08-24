@@ -1,0 +1,19 @@
+.cloudns-type {
+    width:140px;
+}
+
+.cloudns-host {
+    min-width:120px;
+}
+
+.cloudns-record {
+    min-width:180px;
+}
+
+.cloudns-ttl {
+    width:125px;
+}
+
+.cloudns-actions {
+    width:140px;
+}

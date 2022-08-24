@@ -1,0 +1,29 @@
+<?php
+    $this->Widget->clear();
+    $this->Widget->setLinkButtons([]);
+    $this->Widget->create($this->_('Cloudns.edit_row.box_title', true));
+?>
+    <div class="inner">
+        <?php $this->Form->create(); ?>
+        <div class="pad">
+            <ul>
+                <li>
+                    <?php
+                        $this->Form->label($this->_('Cloudns.row_meta.api_id', true), 'api_id');
+                        $this->Form->fieldText('api_id', (isset($vars->api_id) ? $vars->api_id : null), ['id' => 'api_id', 'class' => 'block']);
+                    ?>
+                </li>
+                <li>
+                    <?php
+                        $this->Form->label($this->_('Cloudns.row_meta.api_password', true), 'api_password');
+                        $this->Form->fieldText('api_password', (isset($vars->api_password) ? $vars->api_password : null), ['id' => 'api_password', 'class' => 'block']);
+                    ?>
+                </li>
+            </ul>
+        </div>
+        <div class="button_row">
+            <?php $this->Form->fieldSubmit('save', $this->_('Cloudns.edit_row.edit_btn', true), ['class' => 'btn btn-primary pull-right']); ?>
+        </div>
+        <?php $this->Form->end(); ?>
+    </div>
+<?php $this->Widget->end(); ?>

@@ -1,0 +1,80 @@
+<?php /** @var View $this */ ?>
+
+<?php $this->Form->create(null, ['id' => 'manage-records', 'class' => '']) ?>
+    <div class="title_row first">
+        <h3><?php $this->_('Cloudns.tabStaffRecords.heading.add');?></h3>
+    </div>
+    <div class="inner">
+        <table class="table">
+            <tr class="heading_row">
+                <td><?php $this->_('Cloudns.tabStaffRecords.heading.record_type'); ?></td>
+                <td><?php $this->_('Cloudns.tabStaffRecords.heading.host'); ?></td>
+                <td><?php $this->_('Cloudns.tabStaffRecords.heading.record'); ?></td>
+                <td><?php $this->_('Cloudns.tabStaffRecords.heading.ttl'); ?></td>
+                <td><?php $this->_('Cloudns.tabStaffRecords.heading.options'); ?></td>
+            </tr>
+            <tr>
+                <td class="small"><?php $this->Form->fieldSelect('type', isset($record_types) ? $record_types : null, isset($vars['type']) ? $vars['type'] : null, ['class' => 'stretch']) ?></td>
+                <td><?php $this->Form->fieldText('host', isset($vars['host']) ? $vars['host'] : null, ['class' => 'stretch']) ?></td>
+                <td><?php $this->Form->fieldText('record', isset($vars['record']) ? $vars['record'] : null, ['class' => 'stretch']) ?></td>
+                <td class="small"><?php $this->Form->fieldSelect('ttl', isset($ttl_values) ? $ttl_values : null, isset($vars['ttl']) ? $vars['ttl'] : null, ['class' => 'stretch']) ?></td>
+                <td class="small"><?php $this->Form->fieldSubmit('add', 'Add', ['class' => 'btn btn-sm btn-success', 'style' => 'width:99%']) ?></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <div class="title_row first">
+        <h3><?php $this->_('Cloudns.tabStaffRecords.heading.existing');?></h3>
+    </div>
+    <div class="inner">
+        <?php if ((isset($records) ? $records : false) && ($num_records = count($records)) > 0) { ?>
+            <table class="table" id="records">
+                <tr class="heading_row">
+                    <td><?php $this->_('Cloudns.tabStaffRecords.heading.record_type'); ?></td>
+                    <td><?php $this->_('Cloudns.tabStaffRecords.heading.host'); ?></td>
+                    <td><?php $this->_('Cloudns.tabStaffRecords.heading.record'); ?></td>
+                    <td><?php $this->_('Cloudns.tabStaffRecords.heading.ttl'); ?></td>
+                    <td><?php $this->_('Cloudns.tabStaffRecords.heading.options'); ?></td>
+                    <td><?php $this->_('Cloudns.tabStaffRecords.heading.options'); ?></td>
+                </tr>
+                <?php $i = 0; ?>
+                <?php foreach($records as $record) { ?>
+                    <tr<?php echo ($i%2 == 1) ? ' class="odd_row"' : '';?>>
+                        <?php $this->Form->fieldHidden('id', $record->id) ?>
+                        <td class="small"><?php $this->Form->fieldSelect('type', $record_types, $record->type, ['disabled' => '']) ?></td>
+                        <td><?php $this->Form->fieldText('host', $record->host, ['class' => 'stretch']) ?></td>
+                        <td><?php $this->Form->fieldText('record', $record->record, ['class' => 'stretch']) ?></td>
+                        <td class="small"><?php $this->Form->fieldSelect('ttl', $ttl_values, $record->ttl) ?></td>
+                        <td class="small"><?php $this->Form->fieldSubmit('save', 'Save', ['class' => 'btn btn-sm btn-success', 'style' => 'width:99%']) ?></td>
+                        <td class="small"><?php $this->Form->fieldSubmit('delete', 'Delete', ['class' => 'btn btn-sm btn-danger', 'style' => 'width:99%']) ?></td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php } ?>
+            </table>
+        <?php } else { ?>
+            <div class="alert alert-info">
+                <p>
+                    <?php $this->_('Cloudns.tabStaffRecords.no_results'); ?>
+                </p>
+            </div>
+        <?php } ?>
+    </div>
+<?php $this->Form->end() ?>
+
+<script>
+    $(document).ready(function() {
+        $("form input[type=submit]").click(function() {
+            $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
+            $(this).attr("clicked", "true");
+        });
+
+        $('#manage-records').on('submit', function(event) {
+            var clickedButton = $('input[type=submit][clicked=true]');
+
+            $('tr').find('input,select').attr('disabled', true);
+            clickedButton.parents('tr').find('input,select').attr('disabled', false);
+        });
+    });
+</script>

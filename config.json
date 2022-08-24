@@ -1,0 +1,32 @@
+{
+    "version": "0.1.0",
+    "name": "Cloudns.name",
+    "description": "Cloudns.description",
+    "authors": [
+        {
+            "name": "Aleksa Đorđić",
+            "url": "https://aleksa.tf"
+        },
+        {
+            "name": "Code Cats",
+            "url": "https://code-cats.com"
+        }
+    ],
+    "module": {
+        "row": "Cloudns.module_row",
+        "rows": "Cloudns.module_row_plural",
+        "group": "Cloudns.module_group",
+        "row_key": "api_id"
+    },
+    "package": {
+        "name_key": "record_limit"
+    },
+    "service": {
+        "name_key": "domain"
+    },
+    "email_tags": {
+        "module": ["api_id","api_password"],
+        "package": ["record_limit"],
+        "service": ["domain"]
+    }
+}
