@@ -199,46 +199,46 @@
                                         <td class="v-precision"><?php $this->_('Cloudns.tabClientRecords.heading.v-precision'); ?></td>
                                     </tr>
                                     <tr class="inputs">
-                                        <td class="priority"><?php $this->Form->fieldNumber('priority', isset($vars['priority']) ? $vars['priority'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="weight"><?php $this->Form->fieldNumber('weight', isset($vars['weight']) ? $vars['weight'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="port"><?php $this->Form->fieldNumber('port', isset($vars['port']) ? $vars['port'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="redirect-type"><?php $this->Form->fieldSelect('redirect-type', $redirect_types, isset($vars['redirect-type']) ? $vars['redirect-type'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="mail"><?php $this->Form->fieldText('mail', isset($vars['mail']) ? $vars['mail'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="txt"><?php $this->Form->fieldText('txt', isset($vars['txt']) ? $vars['txt'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="algorithm"><?php $this->Form->fieldSelect('algorithm', $algorithms, isset($vars['algorithm']) ? $vars['algorithm'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="fptype"><?php $this->Form->fieldSelect('fptype', $fingerprint_types, isset($vars['fptype']) ? $vars['fptype'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="caa_flag"><?php $this->Form->fieldSelect('caa_flag', $caa_flags, isset($vars['caa_flag']) ? $vars['caa_flag'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="caa_type"><?php $this->Form->fieldSelect('caa_type', $caa_types, isset($vars['caa_type']) ? $vars['caa_type'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="caa_value"><?php $this->Form->fieldText('caa_value', isset($vars['caa_value']) ? $vars['caa_value'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="tlsa_usage"><?php $this->Form->fieldSelect('tlsa_usage', $tlsa_usages, isset($vars['tlsa_usage']) ? $vars['tlsa_usage'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="tlsa_selector"><?php $this->Form->fieldSelect('tlsa_selector', $tlsa_selectors, isset($vars['tlsa_selector']) ? $vars['tlsa_selector'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="tlsa_matching_type"><?php $this->Form->fieldSelect('tlsa_matching_type', $tlsa_matching_types, isset($vars['tlsa_matching_type']) ? $vars['tlsa_matching_type'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="cert-type"><?php $this->Form->fieldSelect('cert-type', $cert_types, isset($vars['cert-type']) ? $vars['cert-type'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="cert-key-tag"><?php $this->Form->fieldText('cert-key-tag', isset($vars['cert-key-tag']) ? $vars['cert-key-tag'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="cert-algorithm"><?php $this->Form->fieldSelect('cert-algorithm', $cert_algorithms, isset($vars['cert-algorithm']) ? $vars['cert-algorithm'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="key-tag"><?php $this->Form->fieldText('key-tag', isset($vars['key-tag']) ? $vars['key-tag'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="ds-algorithm"><?php $this->Form->fieldSelect('algorithm', $cert_algorithms, isset($vars['algorithm']) ? $vars['algorithm'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="digest-type"><?php $this->Form->fieldSelect('digest-type', $digest_types, isset($vars['digest-type']) ? $vars['digest-type'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="order"><?php $this->Form->fieldNumber('order', isset($vars['order']) ? $vars['order'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="pref"><?php $this->Form->fieldNumber('pref', isset($vars['pref']) ? $vars['pref'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="flag"><?php $this->Form->fieldSelect('flag', $flags, isset($vars['flag']) ? $vars['flag'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="params"><?php $this->Form->fieldText('params', isset($vars['params']) ? $vars['params'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="regexp"><?php $this->Form->fieldText('regexp', isset($vars['regexp']) ? $vars['regexp'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="replace"><?php $this->Form->fieldText('replace', isset($vars['replace']) ? $vars['replace'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="cpu"><?php $this->Form->fieldText('cpu', isset($vars['cpu']) ? $vars['cpu'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="os"><?php $this->Form->fieldText('os', isset($vars['os']) ? $vars['os'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="lat-deg"><?php $this->Form->fieldNumber('lat-deg', isset($vars['lat-deg']) ? $vars['lat-deg'] : null, 0, 90, null, ['class' => 'stretch']) ?></td>
-                                        <td class="lat-min"><?php $this->Form->fieldNumber('lat-min', isset($vars['lat-min']) ? $vars['lat-min'] : null, 0, 90, null, ['class' => 'stretch']) ?></td>
-                                        <td class="lat-sec"><?php $this->Form->fieldNumber('lat-sec', isset($vars['lat-sec']) ? $vars['lat-sec'] : null, 0, 90, null, ['class' => 'stretch']) ?></td>
-                                        <td class="lat-dir"><?php $this->Form->fieldSelect('lat-dir', $lat_directions, isset($vars['lat-dir']) ? $vars['lat-dir'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="long-deg"><?php $this->Form->fieldNumber('long-deg', isset($vars['long-deg']) ? $vars['long-deg'] : null, 0, 90, null, ['class' => 'stretch']) ?></td>
-                                        <td class="long-min"><?php $this->Form->fieldNumber('long-min', isset($vars['long-min']) ? $vars['long-min'] : null, 0, 90, null, ['class' => 'stretch']) ?></td>
-                                        <td class="long-sec"><?php $this->Form->fieldNumber('long-sec', isset($vars['long-sec']) ? $vars['long-sec'] : null, 0, 90, null, ['class' => 'stretch']) ?></td>
-                                        <td class="long-dir"><?php $this->Form->fieldSelect('long-dir', $long_directions, isset($vars['long-dir']) ? $vars['long-dir'] : null, ['class' => 'stretch']) ?></td>
-                                        <td class="altitude"><?php $this->Form->fieldNumber('altitude', isset($vars['altitude']) ? $vars['altitude'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="size"><?php $this->Form->fieldNumber('size', isset($vars['size']) ? $vars['size'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="h-precision"><?php $this->Form->fieldNumber('h-precision', isset($vars['h-precision']) ? $vars['h-precision'] : null, null, null, null, ['class' => 'stretch']) ?></td>
-                                        <td class="v-precision"><?php $this->Form->fieldNumber('v-precision', isset($vars['v-precision']) ? $vars['v-precision'] : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="priority"><?php $this->Form->fieldNumber('priority', isset($record->priority) ? $record->priority : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="weight"><?php $this->Form->fieldNumber('weight', isset($record->weight) ? $record->weight : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="port"><?php $this->Form->fieldNumber('port', isset($record->port) ? $record->port : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="redirect-type"><?php $this->Form->fieldSelect('redirect-type', $redirect_types, isset($record->{'redirect-type'}) ? $record->{'redirect-type'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="mail"><?php $this->Form->fieldText('mail', isset($record->mail) ? $record->mail : null, ['class' => 'stretch']) ?></td>
+                                        <td class="txt"><?php $this->Form->fieldText('txt', isset($record->txt) ? $record->txt : null, ['class' => 'stretch']) ?></td>
+                                        <td class="algorithm"><?php $this->Form->fieldSelect('algorithm', $algorithms, isset($record->algorithm) ? $record->algorithm : null, ['class' => 'stretch']) ?></td>
+                                        <td class="fptype"><?php $this->Form->fieldSelect('fptype', $fingerprint_types, isset($record->fptype) ? $record->fptype : null, ['class' => 'stretch']) ?></td>
+                                        <td class="caa_flag"><?php $this->Form->fieldSelect('caa_flag', $caa_flags, isset($record->caa_flag) ? $record->caa_flag : null, ['class' => 'stretch']) ?></td>
+                                        <td class="caa_type"><?php $this->Form->fieldSelect('caa_type', $caa_types, isset($record->caa_type) ? $record->caa_type : null, ['class' => 'stretch']) ?></td>
+                                        <td class="caa_value"><?php $this->Form->fieldText('caa_value', isset($record->caa_value) ? $record->caa_value : null, ['class' => 'stretch']) ?></td>
+                                        <td class="tlsa_usage"><?php $this->Form->fieldSelect('tlsa_usage', $tlsa_usages, isset($record->tlsa_usage) ? $record->tlsa_usage : null, ['class' => 'stretch']) ?></td>
+                                        <td class="tlsa_selector"><?php $this->Form->fieldSelect('tlsa_selector', $tlsa_selectors, isset($record->tlsa_selector) ? $record->tlsa_selector : null, ['class' => 'stretch']) ?></td>
+                                        <td class="tlsa_matching_type"><?php $this->Form->fieldSelect('tlsa_matching_type', $tlsa_matching_types, isset($record->tlsa_matching_type) ? $record->tlsa_matching_type : null, ['class' => 'stretch']) ?></td>
+                                        <td class="cert-type"><?php $this->Form->fieldSelect('cert-type', $cert_types, isset($record->{'cert-type'}) ? $record->{'cert-type'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="cert-key-tag"><?php $this->Form->fieldText('cert-key-tag', isset($record->{'cert-key-tag'}) ? $record->{'cert-key-tag'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="cert-algorithm"><?php $this->Form->fieldSelect('cert-algorithm', $cert_algorithms, isset($record->{'cert-algorithm'}) ? $record->{'cert-algorithm'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="key-tag"><?php $this->Form->fieldText('key-tag', isset($record->{'key-tag'}) ? $record->{'key-tag'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="ds-algorithm"><?php $this->Form->fieldSelect('algorithm', $cert_algorithms, isset($record->algorithm) ? $record->algorithm : null, ['class' => 'stretch']) ?></td>
+                                        <td class="digest-type"><?php $this->Form->fieldSelect('digest-type', $digest_types, isset($record->{'digest-type'}) ? $record->{'digest-type'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="order"><?php $this->Form->fieldNumber('order', isset($record->order) ? $record->order : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="pref"><?php $this->Form->fieldNumber('pref', isset($record->pref) ? $record->pref : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="flag"><?php $this->Form->fieldSelect('flag', $flags, isset($record->flag) ? $record->flag : null, ['class' => 'stretch']) ?></td>
+                                        <td class="params"><?php $this->Form->fieldText('params', isset($record->params) ? $record->params : null, ['class' => 'stretch']) ?></td>
+                                        <td class="regexp"><?php $this->Form->fieldText('regexp', isset($record->regexp) ? $record->regexp : null, ['class' => 'stretch']) ?></td>
+                                        <td class="replace"><?php $this->Form->fieldText('replace', isset($record->replace) ? $record->replace : null, ['class' => 'stretch']) ?></td>
+                                        <td class="cpu"><?php $this->Form->fieldText('cpu', isset($record->cpu) ? $record->cpu : null, ['class' => 'stretch']) ?></td>
+                                        <td class="os"><?php $this->Form->fieldText('os', isset($record->os) ? $record->os : null, ['class' => 'stretch']) ?></td>
+                                        <td class="lat-deg"><?php $this->Form->fieldNumber('lat-deg', isset($record->{'lat-deg'}) ? $record->{'lat-deg'} : null, 0, 90, null, ['class' => 'stretch']) ?></td>
+                                        <td class="lat-min"><?php $this->Form->fieldNumber('lat-min', isset($record->{'lat-min'}) ? $record->{'lat-min'} : null, 0, 90, null, ['class' => 'stretch']) ?></td>
+                                        <td class="lat-sec"><?php $this->Form->fieldNumber('lat-sec', isset($record->{'lat-sec'}) ? $record->{'lat-sec'} : null, 0, 90, null, ['class' => 'stretch']) ?></td>
+                                        <td class="lat-dir"><?php $this->Form->fieldSelect('lat-dir', $lat_directions, isset($record->{'lat-dir'}) ? $record->{'lat-dir'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="long-deg"><?php $this->Form->fieldNumber('long-deg', isset($record->{'long-deg'}) ? $record->{'long-deg'} : null, 0, 90, null, ['class' => 'stretch']) ?></td>
+                                        <td class="long-min"><?php $this->Form->fieldNumber('long-min', isset($record->{'long-min'}) ? $record->{'long-min'} : null, 0, 90, null, ['class' => 'stretch']) ?></td>
+                                        <td class="long-sec"><?php $this->Form->fieldNumber('long-sec', isset($record->{'long-sec'}) ? $record->{'long-sec'} : null, 0, 90, null, ['class' => 'stretch']) ?></td>
+                                        <td class="long-dir"><?php $this->Form->fieldSelect('long-dir', $long_directions, isset($record->{'long-dir'}) ? $record->{'long-dir'} : null, ['class' => 'stretch']) ?></td>
+                                        <td class="altitude"><?php $this->Form->fieldNumber('altitude', isset($record->altitude) ? $record->altitude : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="size"><?php $this->Form->fieldNumber('size', isset($record->size) ? $record->size : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="h-precision"><?php $this->Form->fieldNumber('h-precision', isset($record->{'h-precision'}) ? $record->{'h-precision'} : null, null, null, null, ['class' => 'stretch']) ?></td>
+                                        <td class="v-precision"><?php $this->Form->fieldNumber('v-precision', isset($record->{'v-precision'}) ? $record->{'v-precision'} : null, null, null, null, ['class' => 'stretch']) ?></td>
                                     </tr>
                                 </tbody>
                             </table>

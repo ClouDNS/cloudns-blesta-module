@@ -1,3 +1,6 @@
+- v0.2.1
+Fixed admin Manage Records tab not loading additional record fields
+
 - v0.2.0
 Fixed record limiting allowing one more extra record past the limit
 Fixed not being able to add certain types of records
