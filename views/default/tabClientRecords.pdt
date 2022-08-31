@@ -19,11 +19,113 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><?php $this->Form->fieldSelect('type', isset($record_types) ? $record_types : null, isset($vars['type']) ? $vars['type'] : null, ['class' => 'form-control cloudns-type']) ?></td>
+                            <td><?php $this->Form->fieldSelect('record-type', isset($record_types) ? $record_types : null, isset($vars['record-type']) ? $vars['record-type'] : null, ['class' => 'form-control cloudns-record-type']) ?></td>
                             <td><?php $this->Form->fieldText('host', isset($vars['host']) ? $vars['host'] : null, ['class' => 'form-control cloudns-host']) ?></td>
                             <td><?php $this->Form->fieldText('record', isset($vars['record']) ? $vars['record'] : null, ['class' => 'form-control cloudns-record']) ?></td>
                             <td><?php $this->Form->fieldSelect('ttl', isset($ttl_values) ? $ttl_values : null, isset($vars['ttl']) ? $vars['ttl'] : null, ['class' => 'form-control cloudns-ttl']) ?></td>
                             <td><?php $this->Form->fieldSubmit('add', 'Add', ['class' => 'form-control btn-success']) ?></td>
+                        </tr>
+                        <tr class="expand_details" style="display: table-row;">
+                            <td colspan="7" class="subtable">    
+                                <div class="alert alert-info" style="display: none;">
+                                    <p>
+                                        <?php $this->_('Cloudns.tabClientRecords.no_options'); ?>
+                                    </p>
+                                </div>     
+
+                                <div class="table-responsive" style="display: none;">
+                                    <table class="table table-curved table-striped">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="priority"><?php $this->_('Cloudns.tabClientRecords.heading.priority'); ?></th>
+                                                <th class="weight"><?php $this->_('Cloudns.tabClientRecords.heading.weight'); ?></th>
+                                                <th class="port"><?php $this->_('Cloudns.tabClientRecords.heading.port'); ?></th>
+                                                <th class="redirect-type"><?php $this->_('Cloudns.tabClientRecords.heading.redirect-type'); ?></th>
+                                                <th class="mail"><?php $this->_('Cloudns.tabClientRecords.heading.mail'); ?></th>
+                                                <th class="txt"><?php $this->_('Cloudns.tabClientRecords.heading.txt'); ?></th>
+                                                <th class="algorithm"><?php $this->_('Cloudns.tabClientRecords.heading.algorithm'); ?></th>
+                                                <th class="fptype"><?php $this->_('Cloudns.tabClientRecords.heading.fptype'); ?></th>
+                                                <th class="caa_flag"><?php $this->_('Cloudns.tabClientRecords.heading.caa_flag'); ?></th>
+                                                <th class="caa_type"><?php $this->_('Cloudns.tabClientRecords.heading.caa_type'); ?></th>
+                                                <th class="caa_value"><?php $this->_('Cloudns.tabClientRecords.heading.caa_value'); ?></th>
+                                                <th class="tlsa_usage"><?php $this->_('Cloudns.tabClientRecords.heading.tlsa_usage'); ?></th>
+                                                <th class="tlsa_selector"><?php $this->_('Cloudns.tabClientRecords.heading.tlsa_selector'); ?></th>
+                                                <th class="tlsa_matching_type"><?php $this->_('Cloudns.tabClientRecords.heading.tlsa_matching_type'); ?></th>
+                                                <th class="cert-type"><?php $this->_('Cloudns.tabClientRecords.heading.cert-type'); ?></th>
+                                                <th class="cert-key-tag"><?php $this->_('Cloudns.tabClientRecords.heading.cert-key-tag'); ?></th>
+                                                <th class="cert-algorithm"><?php $this->_('Cloudns.tabClientRecords.heading.cert-algorithm'); ?></th>
+                                                <th class="key-tag"><?php $this->_('Cloudns.tabClientRecords.heading.key-tag'); ?></th>
+                                                <th class="ds-algorithm"><?php $this->_('Cloudns.tabClientRecords.heading.algorithm'); ?></th>
+                                                <th class="digest-type"><?php $this->_('Cloudns.tabClientRecords.heading.digest-type'); ?></th>
+                                                <th class="order"><?php $this->_('Cloudns.tabClientRecords.heading.order'); ?></th>
+                                                <th class="pref"><?php $this->_('Cloudns.tabClientRecords.heading.pref'); ?></th>
+                                                <th class="flag"><?php $this->_('Cloudns.tabClientRecords.heading.flag'); ?></th>
+                                                <th class="params"><?php $this->_('Cloudns.tabClientRecords.heading.params'); ?></th>
+                                                <th class="regexp"><?php $this->_('Cloudns.tabClientRecords.heading.regexp'); ?></th>
+                                                <th class="replace"><?php $this->_('Cloudns.tabClientRecords.heading.replace'); ?></th>
+                                                <th class="cpu"><?php $this->_('Cloudns.tabClientRecords.heading.cpu'); ?></th>
+                                                <th class="os"><?php $this->_('Cloudns.tabClientRecords.heading.os'); ?></th>
+                                                <th class="lat-deg"><?php $this->_('Cloudns.tabClientRecords.heading.lat-deg'); ?></th>
+                                                <th class="lat-min"><?php $this->_('Cloudns.tabClientRecords.heading.lat-min'); ?></th>
+                                                <th class="lat-sec"><?php $this->_('Cloudns.tabClientRecords.heading.lat-sec'); ?></th>
+                                                <th class="lat-dir"><?php $this->_('Cloudns.tabClientRecords.heading.lat-dir'); ?></th>
+                                                <th class="long-deg"><?php $this->_('Cloudns.tabClientRecords.heading.long-deg'); ?></th>
+                                                <th class="long-min"><?php $this->_('Cloudns.tabClientRecords.heading.long-min'); ?></th>
+                                                <th class="long-sec"><?php $this->_('Cloudns.tabClientRecords.heading.long-sec'); ?></th>
+                                                <th class="long-dir"><?php $this->_('Cloudns.tabClientRecords.heading.long-dir'); ?></th>
+                                                <th class="altitude"><?php $this->_('Cloudns.tabClientRecords.heading.altitude'); ?></th>
+                                                <th class="size"><?php $this->_('Cloudns.tabClientRecords.heading.size'); ?></th>
+                                                <th class="h-precision"><?php $this->_('Cloudns.tabClientRecords.heading.h-precision'); ?></th>
+                                                <th class="v-precision"><?php $this->_('Cloudns.tabClientRecords.heading.v-precision'); ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="inputs">
+                                                <td class="priority"><?php $this->Form->fieldNumber('priority', isset($vars['priority']) ? $vars['priority'] : null, null, null, null, ['class' => 'form-control cloudns-priority']) ?></td>
+                                                <td class="weight"><?php $this->Form->fieldNumber('weight', isset($vars['weight']) ? $vars['weight'] : null, null, null, null, ['class' => 'form-control cloudns-weight']) ?></td>
+                                                <td class="port"><?php $this->Form->fieldNumber('port', isset($vars['port']) ? $vars['port'] : null, null, null, null, ['class' => 'form-control cloudns-port']) ?></td>
+                                                <td class="redirect-type"><?php $this->Form->fieldSelect('redirect-type', $redirect_types, isset($vars['redirect-type']) ? $vars['redirect-type'] : null, ['class' => 'form-control cloudns-redirect-type']) ?></td>
+                                                <td class="mail"><?php $this->Form->fieldText('mail', isset($vars['mail']) ? $vars['mail'] : null, ['class' => 'form-control cloudns-mail']) ?></td>
+                                                <td class="txt"><?php $this->Form->fieldText('txt', isset($vars['txt']) ? $vars['txt'] : null, ['class' => 'form-control cloudns-txt']) ?></td>
+                                                <td class="algorithm"><?php $this->Form->fieldSelect('algorithm', $algorithms, isset($vars['algorithm']) ? $vars['algorithm'] : null, ['class' => 'form-control cloudns-algorithm']) ?></td>
+                                                <td class="fptype"><?php $this->Form->fieldSelect('fptype', $fingerprint_types, isset($vars['fptype']) ? $vars['fptype'] : null, ['class' => 'form-control cloudns-fptype']) ?></td>
+                                                <td class="caa_flag"><?php $this->Form->fieldSelect('caa_flag', $caa_flags, isset($vars['caa_flag']) ? $vars['caa_flag'] : null, ['class' => 'form-control cloudns-caa_flag']) ?></td>
+                                                <td class="caa_type"><?php $this->Form->fieldSelect('caa_type', $caa_types, isset($vars['caa_type']) ? $vars['caa_type'] : null, ['class' => 'form-control cloudns-caa_type']) ?></td>
+                                                <td class="caa_value"><?php $this->Form->fieldText('caa_value', isset($vars['caa_value']) ? $vars['caa_value'] : null, ['class' => 'form-control cloudns-caa_value']) ?></td>
+                                                <td class="tlsa_usage"><?php $this->Form->fieldSelect('tlsa_usage', $tlsa_usages, isset($vars['tlsa_usage']) ? $vars['tlsa_usage'] : null, ['class' => 'form-control cloudns-tlsa_usage']) ?></td>
+                                                <td class="tlsa_selector"><?php $this->Form->fieldSelect('tlsa_selector', $tlsa_selectors, isset($vars['tlsa_selector']) ? $vars['tlsa_selector'] : null, ['class' => 'form-control cloudns-tlsa_selector']) ?></td>
+                                                <td class="tlsa_matching_type"><?php $this->Form->fieldSelect('tlsa_matching_type', $tlsa_matching_types, isset($vars['tlsa_matching_type']) ? $vars['tlsa_matching_type'] : null, ['class' => 'form-control cloudns-tlsa_matching_type']) ?></td>
+                                                <td class="cert-type"><?php $this->Form->fieldSelect('cert-type', $cert_types, isset($vars['cert-type']) ? $vars['cert-type'] : null, ['class' => 'form-control cloudns-cert-type']) ?></td>
+                                                <td class="cert-key-tag"><?php $this->Form->fieldText('cert-key-tag', isset($vars['cert-key-tag']) ? $vars['cert-key-tag'] : null, ['class' => 'form-control cloudns-cert-key-tag']) ?></td>
+                                                <td class="cert-algorithm"><?php $this->Form->fieldSelect('cert-algorithm', $cert_algorithms, isset($vars['cert-algorithm']) ? $vars['cert-algorithm'] : null, ['class' => 'form-control cloudns-cert-algorithm']) ?></td>
+                                                <td class="key-tag"><?php $this->Form->fieldText('key-tag', isset($vars['key-tag']) ? $vars['key-tag'] : null, ['class' => 'form-control cloudns-key-tag']) ?></td>
+                                                <td class="ds-algorithm"><?php $this->Form->fieldSelect('algorithm', $cert_algorithms, isset($vars['algorithm']) ? $vars['algorithm'] : null, ['class' => 'form-control cloudns-algorithm']) ?></td>
+                                                <td class="digest-type"><?php $this->Form->fieldSelect('digest-type', $digest_types, isset($vars['digest-type']) ? $vars['digest-type'] : null, ['class' => 'form-control cloudns-digest-type']) ?></td>
+                                                <td class="order"><?php $this->Form->fieldNumber('order', isset($vars['order']) ? $vars['order'] : null, null, null, null, ['class' => 'form-control cloudns-order']) ?></td>
+                                                <td class="pref"><?php $this->Form->fieldNumber('pref', isset($vars['pref']) ? $vars['pref'] : null, null, null, null, ['class' => 'form-control cloudns-pref']) ?></td>
+                                                <td class="flag"><?php $this->Form->fieldSelect('flag', $flags, isset($vars['flag']) ? $vars['flag'] : null, ['class' => 'form-control cloudns-flag']) ?></td>
+                                                <td class="params"><?php $this->Form->fieldText('params', isset($vars['params']) ? $vars['params'] : null, ['class' => 'form-control cloudns-params']) ?></td>
+                                                <td class="regexp"><?php $this->Form->fieldText('regexp', isset($vars['regexp']) ? $vars['regexp'] : null, ['class' => 'form-control cloudns-regexp']) ?></td>
+                                                <td class="replace"><?php $this->Form->fieldText('replace', isset($vars['replace']) ? $vars['replace'] : null, ['class' => 'form-control cloudns-replace']) ?></td>
+                                                <td class="cpu"><?php $this->Form->fieldText('cpu', isset($vars['cpu']) ? $vars['cpu'] : null, ['class' => 'form-control cloudns-cpu']) ?></td>
+                                                <td class="os"><?php $this->Form->fieldText('os', isset($vars['os']) ? $vars['os'] : null, ['class' => 'form-control cloudns-os']) ?></td>
+                                                <td class="lat-deg"><?php $this->Form->fieldNumber('lat-deg', isset($vars['lat-deg']) ? $vars['lat-deg'] : null, 0, 90, null, ['class' => 'form-control cloudns-lat-deg']) ?></td>
+                                                <td class="lat-min"><?php $this->Form->fieldNumber('lat-min', isset($vars['lat-min']) ? $vars['lat-min'] : null, 0, 90, null, ['class' => 'form-control cloudns-lat-min']) ?></td>
+                                                <td class="lat-sec"><?php $this->Form->fieldNumber('lat-sec', isset($vars['lat-sec']) ? $vars['lat-sec'] : null, 0, 90, null, ['class' => 'form-control cloudns-lat-sec']) ?></td>
+                                                <td class="lat-dir"><?php $this->Form->fieldSelect('lat-dir', $lat_directions, isset($vars['lat-dir']) ? $vars['lat-dir'] : null, ['class' => 'form-control cloudns-lat-dir']) ?></td>
+                                                <td class="long-deg"><?php $this->Form->fieldNumber('long-deg', isset($vars['long-deg']) ? $vars['long-deg'] : null, 0, 90, null, ['class' => 'form-control cloudns-long-deg']) ?></td>
+                                                <td class="long-min"><?php $this->Form->fieldNumber('long-min', isset($vars['long-min']) ? $vars['long-min'] : null, 0, 90, null, ['class' => 'form-control cloudns-long-min']) ?></td>
+                                                <td class="long-sec"><?php $this->Form->fieldNumber('long-sec', isset($vars['long-sec']) ? $vars['long-sec'] : null, 0, 90, null, ['class' => 'form-control cloudns-long-sec']) ?></td>
+                                                <td class="long-dir"><?php $this->Form->fieldSelect('long-dir', $long_directions, isset($vars['long-dir']) ? $vars['long-dir'] : null, ['class' => 'form-control cloudns-long-dir']) ?></td>
+                                                <td class="altitude"><?php $this->Form->fieldNumber('altitude', isset($vars['altitude']) ? $vars['altitude'] : null, null, null, null, ['class' => 'form-control cloudns-altitude']) ?></td>
+                                                <td class="size"><?php $this->Form->fieldNumber('size', isset($vars['size']) ? $vars['size'] : null, null, null, null, ['class' => 'form-control cloudns-size']) ?></td>
+                                                <td class="h-precision"><?php $this->Form->fieldNumber('h-precision', isset($vars['h-precision']) ? $vars['h-precision'] : null, null, null, null, ['class' => 'form-control cloudns-h-precision']) ?></td>
+                                                <td class="v-precision"><?php $this->Form->fieldNumber('v-precision', isset($vars['v-precision']) ? $vars['v-precision'] : null, null, null, null, ['class' => 'form-control cloudns-v-precision']) ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -35,7 +137,7 @@
         <h3><?php $this->_('Cloudns.tabClientRecords.heading.existing');?></h3>
         <?php if ((isset($records) ? $records : false) && ($num_records = count($records)) > 0) { ?>
             <div class="table-responsive">
-                <table class="table table-curved table-striped table-hover" id="records">
+                <table class="table table-curved table-striped-alt table-hover" id="records">
                     <thead>
                         <tr>
                             <th><?php $this->_('Cloudns.tabClientRecords.heading.record_type'); ?></th>
@@ -47,16 +149,119 @@
                     </thead>
                     <tbody>
                         <?php foreach($records as $record) { ?>
-                            <tr>
+                            <tr class="expand record_info">
                                 <?php $this->Form->fieldHidden('id', $record->id) ?>
-                                <td><?php $this->Form->fieldSelect('type', $record_types, $record->type, ['disabled' => '', 'class' => 'form-control cloudns-type']) ?></td>
+                                <td><?php $this->Form->fieldSelect('record-type', $record_types, $record->type, ['disabled' => '', 'class' => 'form-control cloudns-record-type']) ?></td>
                                 <td><?php $this->Form->fieldText('host', $record->host, ['class' => 'form-control cloudns-host']) ?></td>
                                 <td><?php $this->Form->fieldText('record', $record->record, ['class' => 'form-control cloudns-record']) ?></td>
                                 <td><?php $this->Form->fieldSelect('ttl', $ttl_values, $record->ttl, ['class' => 'form-control cloudns-ttl']) ?></td>
                                 <td>
-                                    <div class="input-group cloudns-actions">
-                                        <?php $this->Form->fieldSubmit('save', 'Save', ['class' => 'form-control btn-success']) ?>
-                                        <?php $this->Form->fieldSubmit('delete', 'Delete', ['class' => 'form-control btn-danger']) ?>
+                                    <div class="btn-group cloudns-actions">
+                                        <?php $this->Form->fieldSubmit('save', 'Save', ['class' => 'form-control btn-success btn-xs']) ?>
+                                        <?php $this->Form->fieldSubmit('delete', 'Delete', ['class' => 'form-control btn-danger btn-xs']) ?>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="expand_details" style="display: none;">
+                                <td colspan="7" class="subtable">    
+                                    <div class="alert alert-info" style="display: none;">
+                                        <p>
+                                            <?php $this->_('Cloudns.tabClientRecords.no_options'); ?>
+                                        </p>
+                                    </div>     
+
+                                    <div class="table-responsive" style="display: none;">
+                                        <table class="table table-curved table-striped">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th class="priority"><?php $this->_('Cloudns.tabClientRecords.heading.priority'); ?></th>
+                                                    <th class="weight"><?php $this->_('Cloudns.tabClientRecords.heading.weight'); ?></th>
+                                                    <th class="port"><?php $this->_('Cloudns.tabClientRecords.heading.port'); ?></th>
+                                                    <th class="redirect-type"><?php $this->_('Cloudns.tabClientRecords.heading.redirect-type'); ?></th>
+                                                    <th class="mail"><?php $this->_('Cloudns.tabClientRecords.heading.mail'); ?></th>
+                                                    <th class="txt"><?php $this->_('Cloudns.tabClientRecords.heading.txt'); ?></th>
+                                                    <th class="algorithm"><?php $this->_('Cloudns.tabClientRecords.heading.algorithm'); ?></th>
+                                                    <th class="fptype"><?php $this->_('Cloudns.tabClientRecords.heading.fptype'); ?></th>
+                                                    <th class="caa_flag"><?php $this->_('Cloudns.tabClientRecords.heading.caa_flag'); ?></th>
+                                                    <th class="caa_type"><?php $this->_('Cloudns.tabClientRecords.heading.caa_type'); ?></th>
+                                                    <th class="caa_value"><?php $this->_('Cloudns.tabClientRecords.heading.caa_value'); ?></th>
+                                                    <th class="tlsa_usage"><?php $this->_('Cloudns.tabClientRecords.heading.tlsa_usage'); ?></th>
+                                                    <th class="tlsa_selector"><?php $this->_('Cloudns.tabClientRecords.heading.tlsa_selector'); ?></th>
+                                                    <th class="tlsa_matching_type"><?php $this->_('Cloudns.tabClientRecords.heading.tlsa_matching_type'); ?></th>
+                                                    <th class="cert-type"><?php $this->_('Cloudns.tabClientRecords.heading.cert-type'); ?></th>
+                                                    <th class="cert-key-tag"><?php $this->_('Cloudns.tabClientRecords.heading.cert-key-tag'); ?></th>
+                                                    <th class="cert-algorithm"><?php $this->_('Cloudns.tabClientRecords.heading.cert-algorithm'); ?></th>
+                                                    <th class="key-tag"><?php $this->_('Cloudns.tabClientRecords.heading.key-tag'); ?></th>
+                                                    <th class="ds-algorithm"><?php $this->_('Cloudns.tabClientRecords.heading.algorithm'); ?></th>
+                                                    <th class="digest-type"><?php $this->_('Cloudns.tabClientRecords.heading.digest-type'); ?></th>
+                                                    <th class="order"><?php $this->_('Cloudns.tabClientRecords.heading.order'); ?></th>
+                                                    <th class="pref"><?php $this->_('Cloudns.tabClientRecords.heading.pref'); ?></th>
+                                                    <th class="flag"><?php $this->_('Cloudns.tabClientRecords.heading.flag'); ?></th>
+                                                    <th class="params"><?php $this->_('Cloudns.tabClientRecords.heading.params'); ?></th>
+                                                    <th class="regexp"><?php $this->_('Cloudns.tabClientRecords.heading.regexp'); ?></th>
+                                                    <th class="replace"><?php $this->_('Cloudns.tabClientRecords.heading.replace'); ?></th>
+                                                    <th class="cpu"><?php $this->_('Cloudns.tabClientRecords.heading.cpu'); ?></th>
+                                                    <th class="os"><?php $this->_('Cloudns.tabClientRecords.heading.os'); ?></th>
+                                                    <th class="lat-deg"><?php $this->_('Cloudns.tabClientRecords.heading.lat-deg'); ?></th>
+                                                    <th class="lat-min"><?php $this->_('Cloudns.tabClientRecords.heading.lat-min'); ?></th>
+                                                    <th class="lat-sec"><?php $this->_('Cloudns.tabClientRecords.heading.lat-sec'); ?></th>
+                                                    <th class="lat-dir"><?php $this->_('Cloudns.tabClientRecords.heading.lat-dir'); ?></th>
+                                                    <th class="long-deg"><?php $this->_('Cloudns.tabClientRecords.heading.long-deg'); ?></th>
+                                                    <th class="long-min"><?php $this->_('Cloudns.tabClientRecords.heading.long-min'); ?></th>
+                                                    <th class="long-sec"><?php $this->_('Cloudns.tabClientRecords.heading.long-sec'); ?></th>
+                                                    <th class="long-dir"><?php $this->_('Cloudns.tabClientRecords.heading.long-dir'); ?></th>
+                                                    <th class="altitude"><?php $this->_('Cloudns.tabClientRecords.heading.altitude'); ?></th>
+                                                    <th class="size"><?php $this->_('Cloudns.tabClientRecords.heading.size'); ?></th>
+                                                    <th class="h-precision"><?php $this->_('Cloudns.tabClientRecords.heading.h-precision'); ?></th>
+                                                    <th class="v-precision"><?php $this->_('Cloudns.tabClientRecords.heading.v-precision'); ?></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="inputs">                                            
+                                                    <td class="priority"><?php $this->Form->fieldNumber('priority', isset($record->priority) ? $record->priority : null, null, null, null, ['class' => 'form-control cloudns-priority']) ?></td>
+                                                    <td class="weight"><?php $this->Form->fieldNumber('weight', isset($record->weight) ? $record->weight : null, null, null, null, ['class' => 'form-control cloudns-weight']) ?></td>
+                                                    <td class="port"><?php $this->Form->fieldNumber('port', isset($record->port) ? $record->port : null, null, null, null, ['class' => 'form-control cloudns-port']) ?></td>
+                                                    <td class="redirect-type"><?php $this->Form->fieldSelect('redirect-type', $redirect_types, isset($record->{'redirect-type'}) ? $record->{'redirect-type'} : null, ['class' => 'form-control cloudns-redirect-type']) ?></td>
+                                                    <td class="mail"><?php $this->Form->fieldText('mail', isset($record->mail) ? $record->mail : null, ['class' => 'form-control cloudns-mail']) ?></td>
+                                                    <td class="txt"><?php $this->Form->fieldText('txt', isset($record->txt) ? $record->txt : null, ['class' => 'form-control cloudns-txt']) ?></td>
+                                                    <td class="algorithm"><?php $this->Form->fieldSelect('algorithm', $algorithms, isset($record->algorithm) ? $record->algorithm : null, ['class' => 'form-control cloudns-algorithm']) ?></td>
+                                                    <td class="fptype"><?php $this->Form->fieldSelect('fptype', $fingerprint_types, isset($record->fptype) ? $record->fptype : null, ['class' => 'form-control cloudns-fptype']) ?></td>
+                                                    <td class="caa_flag"><?php $this->Form->fieldSelect('caa_flag', $caa_flags, isset($record->caa_flag) ? $record->caa_flag : null, ['class' => 'form-control cloudns-caa_flag']) ?></td>
+                                                    <td class="caa_type"><?php $this->Form->fieldSelect('caa_type', $caa_types, isset($record->caa_type) ? $record->caa_type : null, ['class' => 'form-control cloudns-caa_type']) ?></td>
+                                                    <td class="caa_value"><?php $this->Form->fieldText('caa_value', isset($record->caa_value) ? $record->caa_value : null, ['class' => 'form-control cloudns-caa_value']) ?></td>
+                                                    <td class="tlsa_usage"><?php $this->Form->fieldSelect('tlsa_usage', $tlsa_usages, isset($record->tlsa_usage) ? $record->tlsa_usage : null, ['class' => 'form-control cloudns-tlsa_usage']) ?></td>
+                                                    <td class="tlsa_selector"><?php $this->Form->fieldSelect('tlsa_selector', $tlsa_selectors, isset($record->tlsa_selector) ? $record->tlsa_selector : null, ['class' => 'form-control cloudns-tlsa_selector']) ?></td>
+                                                    <td class="tlsa_matching_type"><?php $this->Form->fieldSelect('tlsa_matching_type', $tlsa_matching_types, isset($record->tlsa_matching_type) ? $record->tlsa_matching_type : null, ['class' => 'form-control cloudns-tlsa_matching_type']) ?></td>
+                                                    <td class="cert-type"><?php $this->Form->fieldSelect('cert-type', $cert_types, isset($record->{'cert-type'}) ? $record->{'cert-type'} : null, ['class' => 'form-control cloudns-cert-type']) ?></td>
+                                                    <td class="cert-key-tag"><?php $this->Form->fieldText('cert-key-tag', isset($record->{'cert-key-tag'}) ? $record->{'cert-key-tag'} : null, ['class' => 'form-control cloudns-cert-key-tag']) ?></td>
+                                                    <td class="cert-algorithm"><?php $this->Form->fieldSelect('cert-algorithm', $cert_algorithms, isset($record->{'cert-algorithm'}) ? $record->{'cert-algorithm'} : null, ['class' => 'form-control cloudns-cert-algorithm']) ?></td>
+                                                    <td class="key-tag"><?php $this->Form->fieldText('key-tag', isset($record->{'key-tag'}) ? $record->{'key-tag'} : null, ['class' => 'form-control cloudns-key-tag']) ?></td>
+                                                    <td class="ds-algorithm"><?php $this->Form->fieldSelect('algorithm', $algorithms, isset($record->algorithm) ? $record->algorithm : null, ['class' => 'form-control cloudns-algorithm']) ?></td>
+                                                    <td class="digest-type"><?php $this->Form->fieldSelect('digest-type', $digest_types, isset($record->{'digest-type'}) ? $record->{'digest-type'} : null, ['class' => 'form-control cloudns-digest-type']) ?></td>
+                                                    <td class="order"><?php $this->Form->fieldNumber('order', isset($record->order) ? $record->order : null, null, null, null, ['class' => 'form-control cloudns-order']) ?></td>
+                                                    <td class="pref"><?php $this->Form->fieldNumber('pref', isset($record->pref) ? $record->pref : null, null, null, null, ['class' => 'form-control cloudns-pref']) ?></td>
+                                                    <td class="flag"><?php $this->Form->fieldSelect('flag', $flags, isset($record->flag) ? $record->flag : null, ['class' => 'form-control cloudns-flag']) ?></td>
+                                                    <td class="params"><?php $this->Form->fieldText('params', isset($record->params) ? $record->params : null, ['class' => 'form-control cloudns-params']) ?></td>
+                                                    <td class="regexp"><?php $this->Form->fieldText('regexp', isset($record->regexp) ? $record->regexp : null, ['class' => 'form-control cloudns-regexp']) ?></td>
+                                                    <td class="replace"><?php $this->Form->fieldText('replace', isset($record->replace) ? $record->replace : null, ['class' => 'form-control cloudns-replace']) ?></td>
+                                                    <td class="cpu"><?php $this->Form->fieldText('cpu', isset($record->cpu) ? $record->cpu : null, ['class' => 'form-control cloudns-cpu']) ?></td>
+                                                    <td class="os"><?php $this->Form->fieldText('os', isset($record->os) ? $record->os : null, ['class' => 'form-control cloudns-os']) ?></td>
+                                                    <td class="lat-deg"><?php $this->Form->fieldNumber('lat-deg', isset($record->{'lat-deg'}) ? $record->{'lat-deg'} : null, 0, 90, null, ['class' => 'form-control cloudns-lat-deg']) ?></td>
+                                                    <td class="lat-min"><?php $this->Form->fieldNumber('lat-min', isset($record->{'lat-min'}) ? $record->{'lat-min'} : null, 0, 90, null, ['class' => 'form-control cloudns-lat-min']) ?></td>
+                                                    <td class="lat-sec"><?php $this->Form->fieldNumber('lat-sec', isset($record->{'lat-sec'}) ? $record->{'lat-sec'} : null, 0, 90, null, ['class' => 'form-control cloudns-lat-sec']) ?></td>
+                                                    <td class="lat-dir"><?php $this->Form->fieldSelect('lat-dir', $lat_directions, isset($record->{'lat-dir'}) ? $record->{'lat-dir'} : null, ['class' => 'form-control cloudns-lat-dir']) ?></td>
+                                                    <td class="long-deg"><?php $this->Form->fieldNumber('long-deg', isset($record->{'long-deg'}) ? $record->{'long-deg'} : null, 0, 90, null, ['class' => 'form-control cloudns-long-deg']) ?></td>
+                                                    <td class="long-min"><?php $this->Form->fieldNumber('long-min', isset($record->{'long-min'}) ? $record->{'long-min'} : null, 0, 90, null, ['class' => 'form-control cloudns-long-min']) ?></td>
+                                                    <td class="long-sec"><?php $this->Form->fieldNumber('long-sec', isset($record->{'long-sec'}) ? $record->{'long-sec'} : null, 0, 90, null, ['class' => 'form-control cloudns-long-sec']) ?></td>
+                                                    <td class="long-dir"><?php $this->Form->fieldSelect('long-dir', $long_directions, isset($record->{'long-dir'}) ? $record->{'long-dir'} : null, ['class' => 'form-control cloudns-long-dir']) ?></td>
+                                                    <td class="altitude"><?php $this->Form->fieldNumber('altitude', isset($record->altitude) ? $record->altitude : null, null, null, null, ['class' => 'form-control cloudns-altitude']) ?></td>
+                                                    <td class="size"><?php $this->Form->fieldNumber('size', isset($record->size) ? $record->size : null, null, null, null, ['class' => 'form-control cloudns-size']) ?></td>
+                                                    <td class="h-precision"><?php $this->Form->fieldNumber('h-precision', isset($record->{'h-precision'}) ? $record->{'h-precision'} : null, null, null, null, ['class' => 'form-control cloudns-h-precision']) ?></td>
+                                                    <td class="v-precision"><?php $this->Form->fieldNumber('v-precision', isset($record->{'v-precision'}) ? $record->{'v-precision'} : null, null, null, null, ['class' => 'form-control cloudns-v-precision']) ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </td>
                             </tr>
@@ -78,6 +283,32 @@
     $(document).ready(function() {
         $(this).blestaSetHeadTag("link", {media:"screen", type:"text/css", rel:"stylesheet", href: "<?php echo $this->Html->safe($this->view_dir . 'css/styles.css');?>"});
 
+        let typeFields = {
+            'A': [],
+            'AAAA': [],
+            'MX': ['priority'],
+            'CNAME': [],
+            'TXT': [],
+            'SPF': [],
+            'NS': [],
+            'SRV': ['priority', 'weight', 'port'],
+            'WR': ['redirect-type'],
+            'RP': ['mail', 'txt'],
+            'SSHFP': ['algorithm', 'fptype'],
+            'ALIAS': [],
+            'CAA': ['caa_flag','caa_type','caa_value'],
+            'TLSA': ['tlsa_usage', 'tlsa_selector', 'tlsa_matching_type'],
+            'CERT': ['cert-type', 'cert-key-tag', 'cert-algorithm'],
+            'DS': ['key-tag', 'ds-algorithm', 'digest-type'],
+            'PTR': [],
+            'NAPTR': ['order', 'pref', 'flag', 'params', 'regexp', 'replace'],
+            'HINFO': ['cpu', 'os'],
+            'LOC': ['lat-deg', 'lat-min', 'lat-sec', 'lat-dir', 'long-deg', 'long-min', 'long-sec', 'long-dir', 'altitude', 'size', 'h-precision', 'v-precision'],
+            'DNAME': [],
+            'SMIMEA': [],
+            'OPENPGPKEY': []
+        }
+        
         $("form input[type=submit]").click(function() {
             $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
             $(this).attr("clicked", "true");
@@ -88,6 +319,54 @@
 
             $('tr').find('input,select').attr('disabled', true);
             clickedButton.parents('tr').find('input,select').attr('disabled', false);
+            clickedButton.parents('tr').next('.expand_details').find('input,select').attr('disabled', false);
         });
+
+        $("#records").on('click', '.record_info', function() {
+            $(this).next(".expand_details").toggle();
+            $(this).toggleClass("expanded");
+        });
+
+        $("form select[name=record-type]").each(function() {
+            updateAdditionalRecordFields(this);
+        });
+
+        $("form select[name=record-type]").on('change', function (e) {
+            updateAdditionalRecordFields(this);
+        });
+
+        function updateAdditionalRecordFields(select) {
+            var optionSelected = $("option:selected", select);
+            var valueSelected = select.value;
+            var additionalFields = typeFields[valueSelected];
+
+            var detailsElement = $(select).parent().parent().next('.expand_details');
+            var alertElement = detailsElement.find('.alert');
+            var tableElement = detailsElement.find('.table-responsive');
+
+            if (additionalFields.length > 0) {
+                alertElement.hide();
+                tableElement.show();
+
+                toggleAdditionalRecordFields(tableElement, additionalFields);
+            } else {
+                alertElement.show();
+                tableElement.hide();
+            }
+        }
+
+        function toggleAdditionalRecordFields(table, fields) {
+            var headings = $(table).find('.headings');
+            var inputs = $(table).find('.inputs');
+
+            headings.children().hide();
+            inputs.find('input,select').attr('disabled', true);
+            inputs.children().hide();
+
+            var selector = "." + fields.join(',.');
+            headings.find(selector).show();
+            inputs.find(selector).show();
+            inputs.find(selector).find('input,select').attr('disabled', false);
+        }
     });
 </script>

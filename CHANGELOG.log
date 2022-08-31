@@ -1,2 +1,7 @@
+- v0.2.0
+Fixed record limiting allowing one more extra record past the limit
+Fixed not being able to add certain types of records
+Added more record options depending on their type
+
 - v0.1.0
 Initial version

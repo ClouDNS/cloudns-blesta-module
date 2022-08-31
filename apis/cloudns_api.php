@@ -10,6 +10,11 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cloudns_response.php';
 class CloudnsApi
 {
     /**
+     * @var array Acceptable record add/edit parameters
+     */
+    private $fields = ['record-type', 'host', 'record', 'ttl', 'priority', 'weight', 'port', 'redirect-type', 'mail', 'txt', 'algorithm', 'fptype', 'caa_flag', 'caa_type', 'caa_value', 'tlsa_usage', 'tlsa_selector', 'tlsa_matching_type', 'cert-type', 'cert-key-tag', 'cert-algorithm', 'key-tag', 'algorithm', 'digest-type', 'order', 'pref', 'flag', 'params', 'regexp', 'replace', 'cpu', 'os', 'lat-deg', 'lat-min', 'lat-sec', 'lat-dir', 'long-deg', 'long-min', 'long-sec', 'long-dir', 'altitude', 'size', 'h-precision', 'v-precision'];
+
+    /**
      * @var string The API URL
      */
     private $apiUrl = 'https://api.cloudns.net';
@@ -149,21 +154,19 @@ class CloudnsApi
      * Add a new Record to a DNS Zone
      * 
      * @param string $domain Domain of the zone to add a record to
-     * @param string $record_type Record Type of the record to add
-     * @param string $host Host/Subdomain of the record to add
-     * @param string $record Record to add
-     * @param string $ttl TTL of the record to add
+     * @param array $data Record data
      */
-    public function addRecord($domain, $record_type, $host, $record, $ttl)
+    public function addRecord($domain, $data)
     {
-        return $this->apiRequest('dns/add-record.json', 
-        [
-            'domain-name' => $domain,
-            'record-type' => $record_type,
-            'host' => $host,
-            'record' => $record,
-            'ttl' => $ttl
-        ], 'GET');
+        $sent_data = ['domain-name' => $domain];
+
+        foreach ($data as $key => $value) {
+            if (in_array($key, $this->fields)) {
+                $sent_data[$key] = $value;
+            }
+        }
+
+        return $this->apiRequest('dns/add-record.json', $sent_data, 'GET');
     }
 
     /**
@@ -171,20 +174,19 @@ class CloudnsApi
      * 
      * @param string $domain Domain of the zone to add a record to
      * @param int $record_id Record Identifier received from List Records
-     * @param string $host Host/Subdomain of the record to add
-     * @param string $record Record to add
-     * @param string $ttl TTL of the record to add
+     * @param array $data Record data
      */
-    public function modifyRecord($domain, $record_id, $host, $record, $ttl)
+    public function modifyRecord($domain, $record_id, $data)
     {
-        return $this->apiRequest('dns/mod-record.json', 
-        [
-            'domain-name' => $domain,
-            'record-id' => $record_id,
-            'host' => $host,
-            'record' => $record,
-            'ttl' => $ttl
-        ], 'GET');
+        $sent_data = ['domain-name' => $domain, 'record-id' => $record_id];
+
+        foreach ($data as $key => $value) {
+            if (in_array($key, $this->fields)) {
+                $sent_data[$key] = $value;
+            }
+        }
+
+        return $this->apiRequest('dns/mod-record.json', $sent_data, 'GET');
     }
 
     /**

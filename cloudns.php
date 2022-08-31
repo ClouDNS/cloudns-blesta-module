@@ -609,17 +609,17 @@ class Cloudns extends Module
                     if ($errors) {
                         $this->Input->setErrors(['error' => $errors]);
                     } else {
-                        if (count((array)$response->response()) > intval($service->package->meta->record_limit)) {
+                        if (count((array)$response->response()) >= intval($service->package->meta->record_limit)) {
                             $this->Input->setErrors(['error' => ['record_limit' => Language::_('Cloudns.' . $type . '.record_limit', true)]]);
                         }
                     }
                 }
 
                 if ($this->Input->errors() == false) {
-                    $response = $api->addRecord($service_fields->domain, $post['type'], $post['host'], $post['record'], $post['ttl']);
+                    $response = $api->addRecord($service_fields->domain, $post);
                 }
             } else if (isset($post['save'])) {
-                $response = $api->modifyRecord($service_fields->domain, $post['id'], $post['host'], $post['record'], $post['ttl']);
+                $response = $api->modifyRecord($service_fields->domain, $post['id'], $post);
             } else if (isset($post['delete'])) {
                 $response = $api->deleteRecord($service_fields->domain, $post['id']);
             }
@@ -635,6 +635,20 @@ class Cloudns extends Module
 
         $this->view->set('record_types', $this->getRecordTypes());
         $this->view->set('ttl_values', $this->getTTLValues());
+        $this->view->set('redirect_types', $this->getRedirectTypes());
+        $this->view->set('algorithms', $this->getAlgorithms());
+        $this->view->set('fingerprint_types', $this->getFingerprintTypes());
+        $this->view->set('caa_flags', $this->getCAAFlags());
+        $this->view->set('caa_types', $this->getCAATypes());
+        $this->view->set('tlsa_usages', $this->getTLSAUsages());
+        $this->view->set('tlsa_selectors', $this->getTLSASelectors());
+        $this->view->set('tlsa_matching_types', $this->getTLSAMatchingTypes());
+        $this->view->set('cert_types', $this->getCertTypes());
+        $this->view->set('cert_algorithms', $this->getCertAlgorithms());
+        $this->view->set('digest_types', $this->getDigestTypes());
+        $this->view->set('flags', $this->getFlags());
+        $this->view->set('lat_directions', $this->getLatDirections());
+        $this->view->set('long_directions', $this->getLongDirections());
         $this->view->set('service_fields', $service_fields);
         $this->view->set('service_id', $service->id);
         $this->view->set('client_id', $service->client_id);
@@ -805,6 +819,150 @@ class Cloudns extends Module
             '604800' => Language::_('Cloudns.ttl.604800', true),
             '1209600' => Language::_('Cloudns.ttl.1209600', true),
             '2592000' => Language::_('Cloudns.ttl.2592000', true),
+        ];
+    }
+
+    private function getRedirectTypes()
+    {
+        return [
+            '301' => Language::_('Cloudns.redirectType.301', true),
+            '302' => Language::_('Cloudns.redirectType.302', true)
+        ];
+    }
+
+    private function getAlgorithms()
+    {
+        return [
+            '1' => Language::_('Cloudns.algotihm.1', true),
+            '2' => Language::_('Cloudns.algotihm.2', true),
+            '3' => Language::_('Cloudns.algotihm.3', true),
+            '4' => Language::_('Cloudns.algotihm.4', true)
+        ];
+    }
+
+    private function getFingerprintTypes()
+    {
+        return [
+            '1' => Language::_('Cloudns.fingerprintType.1', true),
+            '2' => Language::_('Cloudns.fingerprintType.2', true)
+        ];
+    }
+
+    private function getCAAFlags()
+    {
+        return [
+            '0' => Language::_('Cloudns.caaFlag.0', true),
+            '128' => Language::_('Cloudns.caaFlag.128', true)
+        ];
+    }
+
+    private function getCAATypes()
+    {
+        return [
+            'issue' => Language::_('Cloudns.caaType.issue', true),
+            'issuewild' => Language::_('Cloudns.caaType.issuewild', true),
+            'iodef' => Language::_('Cloudns.caaType.iodef', true)
+        ];
+    }
+
+    private function getTLSAUsages()
+    {
+        return [
+            '0' => Language::_('Cloudns.tlsaUsage.0', true),
+            '1' => Language::_('Cloudns.tlsaUsage.1', true),
+            '2' => Language::_('Cloudns.tlsaUsage.2', true),
+            '3' => Language::_('Cloudns.tlsaUsage.3', true)
+        ];
+    }
+
+    private function getTLSASelectors()
+    {
+        return [
+            '0' => Language::_('Cloudns.tlsaSelector.0', true),
+            '1' => Language::_('Cloudns.tlsaSelector.1', true)
+        ];
+    }
+
+    private function getTLSAMatchingTypes()
+    {
+        return [
+            '0' => Language::_('Cloudns.tlsaMatchingType.0', true),
+            '1' => Language::_('Cloudns.tlsaMatchingType.1', true),
+            '2' => Language::_('Cloudns.tlsaMatchingType.2', true)
+        ];
+    }
+
+    private function getCertTypes()
+    {
+        return [
+            '1' => Language::_('Cloudns.certType.1', true),
+            '2' => Language::_('Cloudns.certType.2', true),
+            '3' => Language::_('Cloudns.certType.3', true),
+            '4' => Language::_('Cloudns.certType.4', true),
+            '5' => Language::_('Cloudns.certType.5', true),
+            '6' => Language::_('Cloudns.certType.6', true),
+            '7' => Language::_('Cloudns.certType.7', true),
+            '8' => Language::_('Cloudns.certType.8', true),
+            '253' => Language::_('Cloudns.certType.253', true),
+            '254' => Language::_('Cloudns.certType.254', true)
+        ];
+    }
+
+    private function getCertAlgorithms()
+    {
+        return [
+            '2' => Language::_('Cloudns.certAlgorithm.2', true),
+            '3' => Language::_('Cloudns.certAlgorithm.3', true),
+            '4' => Language::_('Cloudns.certAlgorithm.4', true),
+            '5' => Language::_('Cloudns.certAlgorithm.5', true),
+            '6' => Language::_('Cloudns.certAlgorithm.6', true),
+            '7' => Language::_('Cloudns.certAlgorithm.7', true),
+            '8' => Language::_('Cloudns.certAlgorithm.8', true),
+            '10' => Language::_('Cloudns.certAlgorithm.10', true),
+            '13' => Language::_('Cloudns.certAlgorithm.13', true),
+            '14' => Language::_('Cloudns.certAlgorithm.14', true),
+            '15' => Language::_('Cloudns.certAlgorithm.15', true),
+            '16' => Language::_('Cloudns.certAlgorithm.16', true),
+            '252' => Language::_('Cloudns.certAlgorithm.252', true),
+            '253' => Language::_('Cloudns.certAlgorithm.253', true),
+            '254' => Language::_('Cloudns.certAlgorithm.254', true)
+        ];
+    }
+
+    private function getDigestTypes()
+    {
+        return [
+            '1' => Language::_('Cloudns.digestType.1', true),
+            '2' => Language::_('Cloudns.digestType.2', true),
+            '3' => Language::_('Cloudns.digestType.3', true),
+            '4' => Language::_('Cloudns.digestType.4', true)
+        ];
+    }
+
+    private function getFlags()
+    {
+        return [
+            '' => Language::_('Cloudns.flag.empty', true),
+            'U' => Language::_('Cloudns.flag.U', true),
+            'S' => Language::_('Cloudns.flag.S', true),
+            'A' => Language::_('Cloudns.flag.A', true),
+            'P' => Language::_('Cloudns.flag.P', true)
+        ];
+    }
+
+    private function getLatDirections()
+    {
+        return [
+            'N' => Language::_('Cloudns.direction.N', true),
+            'S' => Language::_('Cloudns.direction.S', true),
+        ];
+    }
+
+    private function getLongDirections()
+    {
+        return [
+            'W' => Language::_('Cloudns.direction.W', true),
+            'E' => Language::_('Cloudns.direction.E', true),
         ];
     }
 }
